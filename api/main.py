@@ -148,6 +148,10 @@ def verificar_conexion():
         return {"mensaje": "Conexión exitosa a la base de datos"}
     except Exception as e:
         return {"mensaje": f"Error al conectar con la base de datos: {e}"}
+        
+@app.get("/")
+def welcome():
+    return {"mensaje": "Hello world"}
 
 SECRET_KEY="DJEJFKJLSFK"
 # Función para crear un token de acceso
@@ -170,6 +174,7 @@ def verify_token(token: str):
         return None
     except jwt.InvalidTokenError:
         return None
+
 
 @app.post("/login")
 async def login(login_request: LoginRequest):
